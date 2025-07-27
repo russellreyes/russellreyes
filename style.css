@@ -1370,13 +1370,14 @@ footer .container {
     
     .portfolio-filters {
         flex-wrap: nowrap;
-        gap: 0.3rem;
-        justify-content: center;
+        gap: 0.2rem;
+        justify-content: flex-start;
         overflow-x: auto;
         padding: 0.5rem 0;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         -ms-overflow-style: none;
+        width: 100%;
     }
     
     .portfolio-filters::-webkit-scrollbar {
@@ -1384,11 +1385,12 @@ footer .container {
     }
     
     .filter-btn {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.8rem;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.7rem;
         margin: 0;
         white-space: nowrap;
         flex-shrink: 0;
+        min-width: auto;
     }
     
     .portfolio-grid {
@@ -1556,15 +1558,17 @@ footer .container {
     }
     
     .portfolio-filters {
-        gap: 0.2rem;
-        padding: 0.3rem 0;
+        gap: 0.15rem;
+        padding: 0.2rem 0;
+        justify-content: flex-start;
     }
     
     .filter-btn {
-        padding: 0.4rem 0.6rem;
-        font-size: 0.75rem;
+        padding: 0.3rem 0.5rem;
+        font-size: 0.65rem;
         white-space: nowrap;
         flex-shrink: 0;
+        min-width: auto;
     }
     
     .sidebar-nav-links a {
@@ -1811,11 +1815,25 @@ footer .container {
     .filter-btn {
         border-radius: 25px;
         font-weight: 500;
-        min-width: fit-content;
+        min-width: auto;
         text-align: center;
         user-select: none;
         -webkit-tap-highlight-color: rgba(255, 215, 0, 0.3);
         touch-action: manipulation;
+    }
+    
+    /* Force single line for portfolio filters on mobile */
+    @media (max-width: 768px) {
+        .portfolio-filters {
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            justify-content: flex-start !important;
+        }
+        
+        .filter-btn {
+            flex-shrink: 0 !important;
+            white-space: nowrap !important;
+        }
     }
     
     /* Portfolio Other Sample Button for mobile */
