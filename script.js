@@ -1,4 +1,4 @@
-// Typing Animations
+// Typing Animation
 const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cursor");
 
