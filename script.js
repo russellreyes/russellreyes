@@ -511,4 +511,43 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
         });
     });
+
+    // Custom Carousel Functionality
+    const carousel = document.querySelector(".custom-carousel");
+    if (carousel) {
+        const cards = [...carousel.children];
+
+        // Duplicate all cards for seamless loop
+        cards.forEach(card => {
+            carousel.appendChild(card.cloneNode(true));
+        });
+
+        function setCarouselAnimation() {
+            const gap = parseInt(getComputedStyle(carousel).gap) || 0;
+            const firstSetWidth = cards.reduce((total, card) => total + card.offsetWidth + gap, 0);
+
+            const duration = firstSetWidth / 200; // faster scroll
+            carousel.style.animationDuration = `${duration}s`;
+
+            const styleSheet = document.styleSheets[0];
+            const keyframes = `
+                @keyframes custom-scrollCarousel {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-${firstSetWidth}px); }
+                }
+            `;
+
+            // Remove old keyframes if exist
+            for (let i = styleSheet.cssRules.length - 1; i >= 0; i--) {
+                if (styleSheet.cssRules[i].name === "custom-scrollCarousel") {
+                    styleSheet.deleteRule(i);
+                }
+            }
+
+            styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+        }
+
+        window.addEventListener("load", setCarouselAnimation);
+        window.addEventListener("resize", setCarouselAnimation);
+    }
 }); 
